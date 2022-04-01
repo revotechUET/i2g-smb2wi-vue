@@ -8,8 +8,15 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@revotechuet/misc-component-vue": "^1.2.3-420fc8c.0",
+    "axios": "^0.26.1",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "dtoaster": "^0.1.4",
+    "plot-toolkit-2": "git+https://github.com/tunghoang/plot-toolkit-2.git",
+    "vue": "^2.6.11",
+    "vue-material": "^1.0.0-beta-15",
+    "vue-router": "^4.0.14",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.13",
@@ -18,6 +25,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "less-loader": "^10.2.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
