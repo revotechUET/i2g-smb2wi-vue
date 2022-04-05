@@ -8,7 +8,7 @@ const { wiLoginClient, WiApi, wiid } = require('@revotechuet/misc-component-vue'
 const wiLogin = new wiLoginClient('WI_SMB2WI_CLIENT');
 window.localStorage.setItem('AUTHENTICATION_SERVICE', 'https://users.i2g.cloud');
 window.localStorage.setItem('BASE_URL', 'https://users.i2g.cloud');
-wiLogin.doLogin({ redirectUrl: window.location.origin, whoami: 'wi-smb2wi', loginPage: 'https://login.i2g.cloud' });
+wiLogin.doLogin({ redirectUrl: window.location.origin, whoami: 'wi-angular', loginPage: 'https://login.i2g.cloud' });
 
 function queryShares(url, token, storageDBKeys) {
   return axios.request({
@@ -48,7 +48,8 @@ function listUsers(idCompany, token) {
     headers: {
       Authorization: token,
       ContentType: 'application/json',
-      Service: 'WI-AUTH'
+      Service: 'WI_AUTH',
+      WHOAMI: 'WI_ANGULAR'
     },
     params: {
       wiid: payloadHash
@@ -105,7 +106,7 @@ let store = new Vuex.Store({
         'public': 'No',
         'hide files': '/*__WI__/',
         data: {
-          name: shareName(project, state.username),
+          name: shareName(project, normalize(state.username)),
           owner: normalize(state.username),
           storageDBKey: storageDBKey(project),
           validUsers: []
@@ -125,7 +126,7 @@ let store = new Vuex.Store({
       let selectedShareState = state.shareStates.find(sh => sh.data.storageDBKey === storageDBKey(selectedProject));
       if ( !selectedShareState ) return;
       let validUsers = selectedShareState.data.validUsers;
-      let idx = validUsers.findIndex(vUser => vUser === user.username);
+      let idx = validUsers.findIndex(vUser => vUser === normalize(user.username));
       if (idx < 0) {
         validUsers.push(normalize(user.username));
       }
@@ -139,7 +140,7 @@ let store = new Vuex.Store({
       let selectedShareState = state.shareStates.find(sh => sh.data.storageDBKey === storageDBKey(selectedProject));
       if ( !selectedShareState ) return;
       let validUsers = selectedShareState.data.validUsers;
-      let idx = validUsers.findIndex(vUser => vUser === user.username);
+      let idx = validUsers.findIndex(vUser => vUser === normalize(user.username));
       if (idx < 0) {
         validUsers.push(normalize(user.username));
       }
@@ -150,7 +151,7 @@ let store = new Vuex.Store({
       let selectedShareState = state.shareStates.find(sh => sh.data.storageDBKey === storageDBKey(selectedProject));
       if ( !selectedShareState ) return;
       let validUsers = selectedShareState.data.validUsers;
-      let idx = validUsers.findIndex(vUser => vUser === user.username);
+      let idx = validUsers.findIndex(vUser => vUser === normalize(user.username));
       if (idx >= 0) {
         validUsers.splice(idx, 1);
       }
