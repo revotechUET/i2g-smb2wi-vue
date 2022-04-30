@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import 'dtoaster/dist/dtoaster.css'
 import DToaster from 'dtoaster'
+import axios from 'axios'
 Vue.config.productionTip = false
 Vue.use(DToaster, {
   presets: [ {
@@ -34,7 +35,18 @@ import App from './App.vue'
 import './styles.css';
 //import './i2g-icons.css';
 
-new Vue({
-  render: h => h(App),
-  store: store
-}).$mount('#app')
+axios.get("/config.json", {
+  headers: {
+      ContentType: 'application/json'
+  }
+}).then(res => {
+  window.$siteConfig = res.data;
+  console.log(res.data);
+  new Vue({
+    render: h => h(App),
+    store: store
+  }).$mount('#app')
+}).catch(e => {
+  console.error(e);
+  alert('failed to load Application');
+});

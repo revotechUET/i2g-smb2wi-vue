@@ -6,7 +6,7 @@
         :class="{'selected': selectedProjectIdx === idx, 'shared': shareState(p) }"  
         @click="$store.commit('selectPrjIndex', idx)">
         <div style="flex: 2;"><i class="fa fa-sitemap fa-big-icon"></i><span style="margin-left:10px;">{{p.name}}</span></div>
-        <div style="flex: 3; font-style: italic; font-weight: 300"><span v-if='shareState(p)'>{{`codb_${username}_${p.name}`}}</span></div>
+        <div style="flex: 3; font-style: italic; font-weight: 300"><span v-if='shareState(p)'>{{`\\\\hcm-dtpappserv.biendongpoc.vn\\codb_${normalizedUsername}_${p.name}`}}</span></div>
         <div style="flex-basis: 80px">
           <button @click="doUnshare(p)"
             v-show='selectedProjectIdx === idx && shareState(p)' style="width: 100%">Unshare</button>
@@ -20,7 +20,7 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-import { storageDBKey } from '../accessors.js';
+import { storageDBKey, normalize } from '../accessors.js';
 export default {
   name: "ProjectList",
   props: ['styleObj', 'classObj'],
@@ -35,6 +35,9 @@ export default {
       shareStates: state => state.shareStates,
       selectedProjectIdx: state => state.selectedProjectIdx
     }),
+    normalizedUsername() {
+      return normalize(this.$store.state.username);
+    }, 
     filterProjects() {
       if (!this.filterValue || !this.filterValue.length) return this.projects;
       return this.projects.filter(p => p.name.includes(this.filterValue));

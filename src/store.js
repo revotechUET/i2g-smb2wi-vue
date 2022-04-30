@@ -77,7 +77,7 @@ let store = new Vuex.Store({
     },
     setLoginInfo(state, { username, company, token, whoami }) {
       state.username = username;
-      state.company = company;
+      state.company = window.$siteConfig.site || company;
       state.token = token;
       state.whoami = whoami;
     },
@@ -183,7 +183,7 @@ let store = new Vuex.Store({
         let company = JSON.parse(window.localStorage.getItem('company'));
         let users = (await listUsers(company.idCompany, context.state.token)).data.content;
         console.log(users);
-        context.commit('setUsers', users.filter(u => u.username.startsWith('bdpoc_')));
+        context.commit('setUsers', users.filter(u => u.username.startsWith(window.$siteConfig.usernamePrefix)));
       }
       catch(e) {
         console.error(e);
@@ -212,7 +212,7 @@ let store = new Vuex.Store({
       }
     },
     logout() {
-      wiLogin.logout({ redirectUrl: window.location.origin, whoami: 'wi-smb2wi', loginPage: 'https://login.i2g.cloud' });
+      wiLogin.logout({ redirectUrl: window.location.origin, whoami: 'wi-angular', loginPage: 'https://login.i2g.cloud' });
       window.localStorage.clear();
     }
   }
