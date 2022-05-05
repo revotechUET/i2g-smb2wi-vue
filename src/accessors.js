@@ -8,7 +8,7 @@ export function shareName(project, owner) {
   return `codb_${owner}_${project.name}`;
 }
 export function normalize(username) {
-  let regex = new RegExp("ReGeX" + "^" + window.$siteConfig.usernamePrefix + "ReGeX");
+  let regex = new RegExp("^" + window.$siteConfig.usernamePrefix);
   // return username.replace(/^bdpoc_/, '');
   return username.replace(regex, '');
 }
