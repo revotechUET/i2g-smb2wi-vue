@@ -59,8 +59,9 @@ body {
   padding: 8px;
   position: sticky;
   top: 0;
+  text-align: left;
 }
-tr {
+.project-list td {
   cursor: pointer;
   align-items: center;
 }
