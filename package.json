@@ -14,6 +14,7 @@
     "dtoaster": "^0.1.4",
     "plot-toolkit-2": "git+https://github.com/tunghoang/plot-toolkit-2.git",
     "vue": "^2.6.11",
+    "vue-js-modal": "^2.0.1",
     "vue-material": "^1.0.0-beta-15",
     "vue-router": "^4.0.14",
     "vuex": "^3.6.2"

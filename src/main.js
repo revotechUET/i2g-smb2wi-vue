@@ -2,6 +2,7 @@ import Vue from 'vue'
 import 'dtoaster/dist/dtoaster.css'
 import DToaster from 'dtoaster'
 import axios from 'axios'
+import VModal from 'vue-js-modal'
 Vue.config.productionTip = false
 Vue.use(DToaster, {
   presets: [ {
@@ -30,6 +31,7 @@ Vue.use(DToaster, {
   position: 'bottom-right',
   containerOffset: '45px'
 });
+Vue.use(VModal,  {dialog: true })
 import store from './store'
 import App from './App.vue'
 import './styles.css';
