@@ -1,21 +1,35 @@
 <template>
   <div :class='classObj' class="position-relative" :style='styleObj'>
-    <input class="input-filter" type="text" v-model="filterValue" placeholder="Search project">
-    <ul>
-      <li v-for="(p,idx) in filterProjects" :key="idx" style="display:flex;"
-        :class="{'selected': selectedProjectIdx === idx, 'shared': shareState(p) }"  
-        @click="$store.commit('selectPrjIndex', idx)">
-        <div style="flex: 2;"><i class="fa fa-sitemap fa-big-icon"></i><span style="margin-left:10px;">{{p.name}}</span></div>
-        <div style="flex: 3; font-style: italic; font-weight: 300"><span v-if='shareState(p)'>{{`\\\\hcm-dtpappserv.biendongpoc.vn\\codb_${normalizedUsername}_${p.name}`}}</span></div>
-        <div style="flex-basis: 80px">
-          <button @click="doUnshare(p)"
-            v-show='selectedProjectIdx === idx && shareState(p)' style="width: 100%">Unshare</button>
-          <button @click="doShare(p)"
-            v-show='selectedProjectIdx === idx && !shareState(p)' style="width: 100%">Share</button>
-        </div>
-      </li>
-    </ul>
-    
+    <input class="input-filter" type="text" v-model="filterValue" placeholder="Search workspace">
+    <div class="project-list">
+      <table>
+        <thead>
+          <tr>
+            <th>Workspace</th>
+            <th>Address</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(p,idx) in filterProjects" :key="idx"
+            :class="{'selected': selectedProjectIdx === idx, 'shared': shareState(p) }"
+            @click="$store.commit('selectPrjIndex', idx)">
+            <td><i class="fa fa-sitemap fa-big-icon"></i><span style="margin-left:10px;">{{p.name}}</span></td>
+            <td style="width: 60%; font-style: italic; font-weight: 300">
+              <input v-if='shareState(p)' type="text" :value="`\\\\hcm-dtpappserv.biendongpoc.vn\\codb_${normalizedUsername}_${p.name}`"
+                readonly style="width: 100%; border: 0; outline: 0; background: none;"
+                @click.stop="e => e.currentTarget.select()">
+            </td>
+            <td style="width: 80px">
+              <button @click="doUnshare(p)"
+                v-show='selectedProjectIdx === idx && shareState(p)' style="width: 100%">Unshare</button>
+              <button @click="doShare(p)"
+                v-show='selectedProjectIdx === idx && !shareState(p)' style="width: 100%">Share</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 <script>
@@ -37,7 +51,7 @@ export default {
     }),
     normalizedUsername() {
       return normalize(this.$store.state.username);
-    }, 
+    },
     filterProjects() {
       if (!this.filterValue || !this.filterValue.length) return this.projects;
       return this.projects.filter(p => p.name.includes(this.filterValue));
@@ -60,7 +74,7 @@ export default {
       filterValue: ""
     }
   }
-} 
+}
 </script>
 <style lang='css' scoped>
 </style>

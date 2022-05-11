@@ -7,7 +7,7 @@
     </div>
     <div class="main-body">
       <div class="side-pane">
-        <div class="v-title-outer"><div class='v-title-inner'>Projects</div></div>
+        <div class="v-title-outer"><div class='v-title-inner'>Workspaces</div></div>
         <ProjectList :style-obj="{'flex': 1, display: 'flex', flexDirection: 'column', 'overflow': 'hidden'}"></ProjectList>
       </div>
       <!--<div class="content">
@@ -75,7 +75,7 @@ h4, h3 {
   transform: translate(-50%, -50%);
 }
 .main-body {
-  flex: 1; 
+  flex: 1;
   overflow: hidden;
   display: flex;
 }

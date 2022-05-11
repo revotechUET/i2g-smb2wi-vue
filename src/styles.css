@@ -45,25 +45,35 @@ body {
   font-weight: 600;
   background-color: #cce7ff;
 }
-ul {
-  list-style: none;
-  padding-left: 0;
+.project-list {
   margin-top: 40px;
   flex: 1;
   overflow: auto;
 }
-li {
+.project-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.project-list thead th {
+  background: #fff;
+  padding: 8px;
+  position: sticky;
+  top: 0;
+}
+tr {
   cursor: pointer;
-  padding: 12px 20px;
   align-items: center;
 }
-li i {
+td {
+  padding: 12px 5px;
+}
+tr i {
   color: #ccf;
 }
-li.shared i {
+tr.shared i {
   color: #00f;
 }
-li span {
+tr span {
   font-size: 14px;
 }
 .fa-big-icon {
