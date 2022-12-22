@@ -6,9 +6,9 @@ import { storageDBKey, sharePath, shareName, normalize } from './accessors.js';
 Vue.use(Vuex);
 const { wiLoginClient, WiApi, wiid } = require('@revotechuet/misc-component-vue');
 const wiLogin = new wiLoginClient('WI_SMB2WI_CLIENT');
-window.localStorage.setItem('AUTHENTICATION_SERVICE', 'https://users.i2g.cloud');
-window.localStorage.setItem('BASE_URL', 'https://users.i2g.cloud');
-wiLogin.doLogin({ redirectUrl: window.location.origin, whoami: 'wi-angular', loginPage: 'https://login.i2g.cloud' });
+window.localStorage.setItem('AUTHENTICATION_SERVICE', 'http://10.68.5.210:2999');
+window.localStorage.setItem('BASE_URL', 'http://10.68.5.210:3000');
+wiLogin.doLogin({ redirectUrl: window.location.origin, whoami: 'wi-angular', loginPage: 'http://10.68.5.210:8888' });
 
 function queryShares(url, token, storageDBKeys) {
   return axios.request({
