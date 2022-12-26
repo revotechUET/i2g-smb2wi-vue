@@ -16,7 +16,7 @@
             @click="$store.commit('selectPrjIndex', idx)">
             <td><i class="fa fa-sitemap fa-big-icon"></i><span style="margin-left:10px;">{{p.name}}</span></td>
             <td>
-              <input v-if='shareState(p)' type="text" :value="`\\\\hcm-dtpappserv.biendongpoc.vn\\codb_${normalizedUsername}_${p.name}`"
+              <input v-if='shareState(p)' type="text" :value="`\\\\10.68.5.210\\codb_${normalizedUsername}_${p.name}`"
                 readonly style="width: 100%; border: 0; outline: 0; background: none; font-style: italic; font-weight: 300"
                 @click="e => e.currentTarget.select()">
             </td>

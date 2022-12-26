@@ -28,6 +28,7 @@ export default {
       return this.projects[this.selectedProjectIdx];
     },
     filterUsers() {
+      console.log("====", this.users);
       if (!this.filterValue || !this.filterValue.length) return this.users;
       return this.users.filter(u => u.username.includes(this.filterValue));
     },

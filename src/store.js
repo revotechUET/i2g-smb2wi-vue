@@ -95,7 +95,9 @@ let store = new Vuex.Store({
       state.shareStatesBk = JSON.parse(JSON.stringify(shareStates));
     },
     setUsers(state, users) {
+      console.log(state, "??????????")
       state.users = users;
+      console.log(state, "??????????", users)
     },
     addShare(state, project) {
       state.shareStates.push({
@@ -183,6 +185,7 @@ let store = new Vuex.Store({
         let company = JSON.parse(window.localStorage.getItem('company'));
         let users = (await listUsers(company.idCompany, context.state.token)).data.content;
         console.log(users);
+	console.log(users.filter(u => u.username.startsWith(window.$siteConfig.usernamePrefix)))
         context.commit('setUsers', users.filter(u => u.username.startsWith(window.$siteConfig.usernamePrefix)));
       }
       catch(e) {
