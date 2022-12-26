@@ -215,7 +215,7 @@ let store = new Vuex.Store({
       }
     },
     logout() {
-      wiLogin.logout({ redirectUrl: window.location.origin, whoami: 'wi-angular', loginPage: 'https://login.i2g.cloud' });
+      wiLogin.logout({ redirectUrl: window.location.origin, whoami: 'wi-angular', loginPage: 'http://10.68.5.210:8888' });
       window.localStorage.clear();
     }
   }
